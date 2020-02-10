@@ -12,7 +12,7 @@
 </body>
 <script type='module'>
   import { createStore } from "../core/index.js";
-  const plan = (state, action) => {
+  const reduce = (state, action) => {
     switch (action.type) {
       case 'add':
         return {
@@ -34,12 +34,13 @@
     }
   }
 
-  const store = createStore(plan, {
+  const store = createStore(reduce, {
     count: 1
   })
 
   store.subscribe(_ => {
     let currentStore = store.getState()
+    console.log("TCL: currentStore", currentStore)
   })
 
   store.changeState({ type: 'add' })

@@ -1,4 +1,4 @@
-export const createStore = function (plan,initState) {
+export const createStore = function (reduce,initState) {
   let state = initState;
   let listeners = [];
 
@@ -7,7 +7,7 @@ export const createStore = function (plan,initState) {
   }
 
   function changeState(action) {
-    state = plan(state,action);
+    state = reduce(state,action);
     for (let i = 0; i < listeners.length; i++) {
       const listener = listeners[i];
       listener();
