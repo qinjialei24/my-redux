@@ -12,16 +12,37 @@
 </body>
 <script type='module'>
   import { createStore } from "../core/index.js";
+  const plan = (state, action) => {
+    switch (action.type) {
+      case 'add':
+        return {
+          ...state,
+          count: state.count+1
+        }
+        break;
 
-  const store = createStore({
-    name: 'a'
+      case 'decrease':
+        return {
+          ...state,
+          count: state.count-1
+        }
+        break;
+
+      default:
+        return state
+        break;
+    }
+  }
+
+  const store = createStore(plan, {
+    count: 1
   })
 
   store.subscribe(_ => {
-    console.log('2222');
+    let currentStore = store.getState()
   })
 
-  store.changeState({ name: 'a22' })
+  store.changeState({ type: 'add' })
 
 </script>
 

@@ -1,4 +1,4 @@
-export const createStore = function (initState) {
+export const createStore = function (plan,initState) {
   let state = initState;
   let listeners = [];
 
@@ -6,8 +6,8 @@ export const createStore = function (initState) {
     listeners.push(listener);
   }
 
-  function changeState(newState) {
-    state = newState;
+  function changeState(action) {
+    state = plan(state,action);
     for (let i = 0; i < listeners.length; i++) {
       const listener = listeners[i];
       listener();
