@@ -12,30 +12,16 @@
 </body>
 <script type='module'>
   import { createStore } from "../core/index.js";
-  const reduce = (state, action) => {
-    switch (action.type) {
-      case 'add':
-        return {
-          ...state,
-          count: state.count+1
-        }
-        break;
+  import { reducers } from "../demo/reducer/index.js";
+  console.log("TCL: reducers", reducers)
 
-      case 'decrease':
-        return {
-          ...state,
-          count: state.count-1
-        }
-        break;
-
-      default:
-        return state
-        break;
-    }
-  }
-
-  const store = createStore(reduce, {
-    count: 1
+  const store = createStore(reducers, {
+    user: {
+      count: 1
+    },
+    admin: {
+      count: 1
+    },
   })
 
   store.subscribe(_ => {

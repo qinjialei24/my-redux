@@ -1,4 +1,4 @@
-export const createStore = function (reduce,initState) {
+export const createStore = function (reduce, initState) {
   let state = initState;
   let listeners = [];
 
@@ -7,7 +7,9 @@ export const createStore = function (reduce,initState) {
   }
 
   function changeState(action) {
-    state = reduce(state,action);
+    console.log("TCL: changeState -> action", action)
+    state = reduce(state, action);
+    console.log("TCL: changeState -> state", state)
     for (let i = 0; i < listeners.length; i++) {
       const listener = listeners[i];
       listener();
