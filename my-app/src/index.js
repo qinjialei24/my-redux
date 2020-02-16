@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import Todo from "./todo";
+// import Todo from "./todo";
+import { Todo } from "./components/todo.js";
 
 
 
 
 function App() {
-  const [items, setItems] = useState([1, 2, 3]);
-  const onDelete = index => {
-    setItems(items.filter((item, index2) => index !== index2))
-  }
+  // const [items, setItems] = useState([1, 2, 3]);
+  // const onDelete = index => {
+  //   setItems(items.filter((item, index2) => index !== index2))
+  // }
 
   return (
-    <Todo items={items} onDelete={onDelete}></Todo>
+    // <Todo items={items} onDelete={onDelete}></Todo>
+    <Todo></Todo>
   )
 
 }
