@@ -1,7 +1,7 @@
 import { handleActions } from "../util";
 
 const initialState = {
-  inputValue: '',
+  inputValue: '123',
   list: []
 }
 const reducers = {
@@ -27,8 +27,7 @@ const reducers = {
 
 export default (state = initialState, action) => handleActions({ state, action, reducers })
 
-
-// export default (state = state, action) => {
+// export default (state = initialState, action) => {
 //   switch (action.type) {
 //     case 'add':
 //       return {

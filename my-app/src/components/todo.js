@@ -6,10 +6,10 @@ import { TodoItem } from "./TodoItem";
 export class Todo extends React.Component {
   constructor(props) {
     super()
-    this.state = store.getState()
+    this.state = store.getState().todo
     store.subscribe(_ => {
-      let state = store.getState();
-      this.setState(state)
+      let { todo } = store.getState();
+      this.setState(todo)
     })
   }
 
@@ -18,10 +18,6 @@ export class Todo extends React.Component {
       type: 'changeInput',
       data: e.target.value
     })
-
-    // this.setState({
-    //   inputValue: e.target.value
-    // })
   }
 
   addItem = () => {

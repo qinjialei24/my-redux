@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import Todo from "./todo";
 import { Todo } from "./components/todo.js";
+import { Counter } from "./components/counter.js";
 
 
 
@@ -13,8 +14,11 @@ function App() {
   // }
 
   return (
-    // <Todo items={items} onDelete={onDelete}></Todo>
-    <Todo></Todo>
+    <div>
+      <Todo></Todo>
+      <hr />
+      <Counter></Counter>
+    </div>
   )
 
 }

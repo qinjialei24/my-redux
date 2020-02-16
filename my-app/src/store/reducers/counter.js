@@ -1,13 +1,20 @@
 import { handleActions } from "../util";
 const initialState = {
-  count: 0
+  count: 10
 }
 
 const reducers = {
-  add: (state, action) => state.count + 1,
-  minus: (state, action) => state.count - 1,
+  addCount: (state, action) => {
+    return {
+      count: state.count + 1
+    }
+  },
+  minusCount: (state, action) => {
+    return {
+      count: state.count - 1
+    }
+  },
 }
-
 
 export default (state = initialState, action) => handleActions({ state, action, reducers })
 
