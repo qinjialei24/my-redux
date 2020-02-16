@@ -7,12 +7,6 @@ const reducer = combineReducers({
   counter,
 })
 
-// console.log("TCL: reducer", reducer)
-
 const _store = createStore(reducer)
-
-// const store = {
-//   dis
-// }
 
 export default _store

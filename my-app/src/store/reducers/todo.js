@@ -25,7 +25,12 @@ const reducers = {
   }
 }
 
-export default (state = initialState, action) => handleActions({ state, action, reducers })
+export default (state = initialState, action) => handleActions({
+  state,
+  action,
+  reducers,
+  namespace: 'todo'
+})
 
 // export default (state = initialState, action) => {
 //   switch (action.type) {
