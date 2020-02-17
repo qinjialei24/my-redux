@@ -6,23 +6,13 @@ const initialState = {
 }
 const reducers = {
   add(state, action) {
-    console.log("TCL: add -> action", action)
-    return {
-      ...state,
-      list: [...state.list, action.data]
-    }
+    state.list.push(action.data)
   },
   delete(state, action) {
-    return {
-      ...state,
-      list: state.list.filter((item, index) => index !== action.data)
-    }
+    state.list.splice(action.data, 1)
   },
   changeInput(state, action) {
-    return {
-      ...state,
-      inputValue: action.data,
-    }
+    state.inputValue = action.data
   }
 }
 
@@ -32,28 +22,3 @@ export default (state = initialState, action) => handleActions({
   reducers,
   namespace: 'todo'
 })
-
-// export default (state = initialState, action) => {
-//   switch (action.type) {
-//     case 'add':
-//       return {
-//         inputValue: state.inputValue,
-//         list: [...state.list, action.data]
-//       }
-
-//     case 'delete':
-//       return {
-//         inputValue: state.inputValue,
-//         list: []
-//       }
-
-//     case 'changeInput':
-//       return {
-//         inputValue: action.data,
-//         list: state.list
-//       }
-
-//     default:
-//       return state
-//   }
-// }
