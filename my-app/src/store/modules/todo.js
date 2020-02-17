@@ -6,6 +6,7 @@ const initialState = {
 }
 const reducers = {
   add(state, action) {
+    console.log("TCL: add -> action", action)
     return {
       ...state,
       list: [...state.list, action.data]
@@ -13,8 +14,8 @@ const reducers = {
   },
   delete(state, action) {
     return {
-      inputValue: state.inputValue,
-      list: []
+      ...state,
+      list: state.list.filter((item, index) => index !== action.data)
     }
   },
   changeInput(state, action) {

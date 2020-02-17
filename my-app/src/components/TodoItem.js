@@ -3,23 +3,19 @@ import store from "../store/index";
 
 
 function TodoItem(props) {
-  const { item } = props
+  const { item, index } = props
 
   function deleteItem(index) {
-    console.log("TCL: deleteItem -> index", index)
-    store.dispatch({
-      type: 'delete'
-    })
-
+    store.dispatch('todo/delete', index)
   }
 
   return (
     <div>
       <li>
         {item}
-        <button onClick={_ => {
-          console.log(111);
-        }}>delete</button>
+        <button onClick={_ => { deleteItem(index); }}>
+          delete
+        </button>
       </li>
     </div>
 

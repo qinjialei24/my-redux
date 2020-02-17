@@ -36,7 +36,7 @@ export class Todo extends React.Component {
         <button onClick={this.addItem}> 添加</button>
         <ul>
           {this.state.list.map((item, index) => {
-            return <TodoItem key={index} item={item}></TodoItem>
+            return <TodoItem key={index} index={index} item={item}></TodoItem>
           })
           }
         </ul>
