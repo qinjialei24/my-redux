@@ -7,6 +7,10 @@ const reducer = combineReducers({
   counter,
 })
 
-const _store = createStore(reducer)
+const store = createStore(reducer)
 
-export default _store
+const _dispatch = store.dispatch
+
+store.dispatch = (type, data) => _dispatch({ type, data })
+
+export default store

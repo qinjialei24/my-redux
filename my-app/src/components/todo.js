@@ -14,17 +14,19 @@ export class Todo extends React.Component {
   }
 
   inputChange = e => {
-    store.dispatch({
-      type: 'todo/changeInput',
-      data: e.target.value
-    })
+    // store.dispatch({
+    //   type: 'todo/changeInput',
+    //   data: e.target.value
+    // })
+    store.dispatch('todo/changeInput', e.target.value)
   }
 
   addItem = () => {
-    store.dispatch({
-      type: 'todo/add',
-      data: this.state.inputValue
-    })
+    // store.dispatch({
+    //   type: 'todo/add',
+    //   data: this.state.inputValue
+    // })
+    store.dispatch('todo/add', this.state.inputValue)
   }
 
   render() {
