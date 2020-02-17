@@ -5,10 +5,10 @@ const initialState = {
 }
 
 const reducers = {
-  add: (state, action) => {
+  add(state, action) {
     state.count++
   },
-  minus: (state, action) => {
+  minus(state, action) {
     state.count--
   },
 }
