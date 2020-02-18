@@ -6,18 +6,46 @@ class ReactX {
     this.bindContext('effect', 'reducer')
   }
 
+  listeners = []
+
+
+  subscribe(listener) {
+    this.listeners.push(listener);
+    console.log("TCL: subscribe ->  this.listeners", this.listeners)
+  }
+
+  notify() {
+    this.listeners.forEach(listener => {
+      console.log('notify');
+      listener()
+    })
+  }
+
   installModule(modules) {
     modules.forEach(module => {
       this[module.name] = module
     })
   }
 
+
+
   bindContext(moduleKey, context) {
+
     this.modulesNames.forEach(moduleName => {
       const currentModule = this[moduleName]
       Object.keys(currentModule[moduleKey]).forEach(key => {
+
         const fn = currentModule[moduleKey][key]
-        currentModule[moduleKey][key] = fn.bind(currentModule[context])
+        if (moduleKey === 'reducer') {
+          currentModule[moduleKey][key] = (payload) => {
+            fn.call(currentModule[context], payload)
+            this.notify()
+          }
+        } else {
+          currentModule[moduleKey][key] = (payload) => {
+            fn.call(currentModule[context], payload)
+          }
+        }
       })
     })
   }
