@@ -15,9 +15,9 @@ class ReactX {
   }
 
   notify() {
+    const allModuleState = this.getAllModuleState()
     this.listeners.forEach(listener => {
-      console.log('notify');
-      listener()
+      listener(allModuleState)
     })
   }
 
@@ -27,6 +27,12 @@ class ReactX {
     })
   }
 
+  getAllModuleState() {
+    return this.modulesNames.reduce((state, moduleName) => ({
+      ...state,
+      [moduleName]: this[moduleName].state
+    }), {})
+  }
 
 
   bindContext(moduleKey, context) {
@@ -40,6 +46,7 @@ class ReactX {
           currentModule[moduleKey][key] = (payload) => {
             fn.call(currentModule[context], payload)
             this.notify()
+            // this.notify(this.getAllModuleState())
           }
         } else {
           currentModule[moduleKey][key] = (payload) => {
