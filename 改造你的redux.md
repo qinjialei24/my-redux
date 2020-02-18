@@ -77,7 +77,7 @@ function reducer(state = counter, action) {
 # Reducer switch 写法较为繁琐
 当 reducer 较多时，使用 switch 较为繁琐
 
-我们可以写个工具方法 将 reducer switch 风格 转换成对象风格，将 action 转换成对象的属性名
+我们可以写个工具方法 将 reducer switch 风格 转换成对象风格
 ```js
 //工具方法
 const handleActions = ({ state, action, reducers}) =>
@@ -179,49 +179,19 @@ produce 的第一个参数是你想操作的对象，我们这里是操作 state
 第二个参数是一个函数，immer 会给该函数传个参数，参数为你操作的对象的副本（可以理解为深拷贝对象），对该副本进行操作时不会影响原对象
 
 所以我们在 reducers 对象内写的函数就相当于写 produce 的第二个参数，同时在 handleActions 工具函数内，我们通过三元表达式也已经 return了，也就实现了 reducers 对象内的函数不需要手动 return
-# 增加命名空间
-当项目大了后，我们写的 action 可能存在命名冲突的问题，解决办法是以当前文件名当做命名空间
-
-例如，我们有如下目录结构
-
-- store
-    - counter.js
-  
-有一天我们需要增加个 todo-list 模块
-- store
-    - counter.js
-    - todoList.js
-  
-为了防止 counter 和 todoList 内 action 命名冲突，我们可以改造下 handleActions 工具函数
+# dispatch 传参优化
+优化前
 ```js
-import produce from "immer"
-
-const getKey = (str, flag) => {
-  const i = str.indexOf(flag)
-  return str.substring(i + 1, str.length + 1)
-}
-
-export const handleActions = ({ state, action, reducers, namespace = '' }) =>
-  Object.keys(reducers)
-    .map(key => namespace + '/' + key)
-    .includes(action.type)
-    ? produce(state, draft => reducers[getKey(action.type, '/')](draft, action))
-    : state
-
-export default (state = initialState, action) => handleActions({
-  namespace: 'counter',//增加命名空间
-  state,
-  action,
-  reducers,
+store.dispatch({
+  type:ADD,
+  data:1
 })
-``` 
-组件这样使用
-```js
-store.dispatch('counter/add')//counter 模块的 add方法
-store.dispatch('todoList/add')//todoList 模块的 add方法
-``` 
+```
+dispatch 只有两个参数
 
 
+### reducer 必须是纯函数,必须返回新的引用，当对象层次较深时，写法繁琐
+### dispatch 传参优化
  
 # 待优化的点
 ## action 基于字符串，编辑器无法做到智能提示，并且容易出现拼写错误
