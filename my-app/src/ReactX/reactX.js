@@ -8,7 +8,6 @@ class ReactX {
 
   listeners = []
 
-
   subscribe(listener) {
     this.listeners.push(listener);
   }
