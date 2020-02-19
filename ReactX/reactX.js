@@ -11,7 +11,6 @@ class ReactX {
 
   subscribe(listener) {
     this.listeners.push(listener);
-    console.log("TCL: subscribe ->  this.listeners", this.listeners)
   }
 
   notify() {
@@ -46,7 +45,6 @@ class ReactX {
           currentModule[moduleKey][key] = (payload) => {
             fn.call(currentModule[context], payload)
             this.notify()
-            // this.notify(this.getAllModuleState())
           }
         } else {
           currentModule[moduleKey][key] = (payload) => {

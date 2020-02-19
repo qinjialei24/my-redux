@@ -1,3 +1,18 @@
+# 前言
+说实话，三大前端框架的状态管理方案（redux、vuex、service+rxjs ），从开发体验上来看，毫无疑问，redux 是最差的，这也导致出现了一大堆 redux 的改良品
+
+但那都是别人家的轮子，出于对自己产品负责的态度，大家都不太敢随意使用，还是尽量使用原生 redux ，毕竟 redux 是经过无数产品考验过的，可靠性能够保证
+
+其实我们不需要动手从零再造个轮子，我们只需要稍微加几十行代码，就可以稍微优化一下 redux，以最低的成本提升一些开发体验
+
+当然，这些优化可能在你看起来，稍显简陋或者并不是你的痛点
+
+但那并不重要，本文只是提供一个最小成本优化 redux 可行的思路
+
+> 一定要敢于尝试，并且要敢于去敲代码去改变一些你觉得不合理的设计
+
+# 正文
+
 # 官方推荐 action 和 reducer 放在不同文件，但是这样导致文件切换繁琐
 按照一般的文件分类，我们有 **action** 和 **reducer** 两个文件
 
@@ -188,6 +203,7 @@ produce 的第一个参数是你想操作的对象，我们这里是操作 state
     - counter.js
   
 有一天我们需要增加个 todo-list 模块
+
 - store
     - counter.js
     - todoList.js
@@ -220,12 +236,13 @@ export default (state = initialState, action) => handleActions({
 store.dispatch('counter/add')//counter 模块的 add方法
 store.dispatch('todoList/add')//todoList 模块的 add方法
 ``` 
-
+[实例代码](https://github.com/qinjialei1023/my-redux/blob/master/my-app/src/store/modules/todo.js)
 
  
 # 待优化的点
-## action 基于字符串，编辑器无法做到智能提示，并且容易出现拼写错误
+- action 基于字符串，编辑器无法做到智能提示，并且容易出现拼写错误
+- 支持ts
 
+未完待续。。。
 
-以上只是一些小小的优化，如果你有更好的想法欢迎在评论区告诉我吧
 
