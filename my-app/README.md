@@ -236,7 +236,7 @@ export default (state = initialState, action) => handleActions({
 store.dispatch('counter/add')//counter 模块的 add方法
 store.dispatch('todoList/add')//todoList 模块的 add方法
 ``` 
-[实例代码](https://github.com/qinjialei1023/my-redux/blob/master/my-app/src/store/modules/todo.js)
+[示例代码](https://github.com/qinjialei1023/my-redux/blob/master/my-app/src/store/modules/todo.js)
 
  
 # 待优化的点
