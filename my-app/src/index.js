@@ -1,19 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Todo } from "./components/todo.js";
-import { Counter } from "./components/counter.js";
-
-import { Todo } from "./components/todo.reactx.js";
+import Count from "./components/Count.js";
 
 function App() {
   return (
     <div>
-      <Todo></Todo>
-      <hr />
-      <Counter></Counter>
+      <Count></Count>
     </div>
   )
-
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
