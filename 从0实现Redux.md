@@ -72,7 +72,7 @@ function countReducer(state = initialState, action) {
 export default countReducer
 
 ```
-
+## 看下 Redux 怎么用的
 
 
 

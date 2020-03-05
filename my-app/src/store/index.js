@@ -1,9 +1,11 @@
-import { createStore, combineReducers, applyMiddleware } from "./redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import count from "./reducers/count";
+import todo from "./reducers/todo";
 
 
 const reducer = combineReducers({
   count: count,
+  todo: todo,
 })
 
 // const logMiddleware = store => dispatch => action => {
@@ -29,29 +31,29 @@ const reducer = combineReducers({
 // }
 
 //
-const logMiddleware = store => (dispatch) => {
-  return (action) => {
-    console.log(store.getState(), 'last state');
-    dispatch(action) //timeMiddleware(store.dispatch)
-    console.log(store.getState(), 'current state');
-  }
-}
+// const logMiddleware = store => (dispatch) => {
+//   return (action) => {
+//     console.log(store.getState(), 'last state');
+//     dispatch(action) //timeMiddleware(store.dispatch)
+//     console.log(store.getState(), 'current state');
+//   }
+// }
 
-const timeMiddleware = store => (dispatch) => {
-  console.log("timeMiddleware -> dispatch", dispatch)
-  return (action) => {
-    dispatch(action)
-    console.log('时间戳');
-  }
-}
+// const timeMiddleware = store => (dispatch) => {
+//   console.log("timeMiddleware -> dispatch", dispatch)
+//   return (action) => {
+//     dispatch(action)
+//     console.log('时间戳');
+//   }
+// }
 
-const rewriteOldCreateStore = applyMiddleware(logMiddleware, timeMiddleware)
-const newCreateStore = rewriteOldCreateStore(createStore)
+// const rewriteOldCreateStore = applyMiddleware(logMiddleware, timeMiddleware)
+// const newCreateStore = rewriteOldCreateStore(createStore)
 
-const store = newCreateStore(reducer, [])
+// const store = newCreateStore(reducer, [])
 
 
-// const store = createStore(reducer, {})
+const store = createStore(reducer, {})
 // store.dispatch = logMiddleware(timeMiddleware(store.dispatch)) //dispatch
 
 

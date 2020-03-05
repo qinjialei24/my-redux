@@ -14,8 +14,7 @@ class Count extends React.Component {
   render() {
     return (
       <div>
-        <h1>当前count的值是：</h1>
-        <h2>{this.state.count}</h2>
+        <h1>当前count的值是：{this.state.count}</h1>
         <button onClick={this.add}>+</button>
         <button onClick={this.minus}>-</button>
       </div>
