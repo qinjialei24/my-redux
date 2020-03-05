@@ -9,18 +9,8 @@ class Count extends React.Component {
       this.setState(store.getState().count)
     })
   }
-
-  add = () => {
-    store.dispatch({
-      type: 'add'
-    })
-  }
-
-  minus = () => {
-    store.dispatch({
-      type: 'minus'
-    })
-  }
+  add = () => { store.dispatch({ type: 'add' }) }
+  minus = () => { store.dispatch({ type: 'minus' }) }
   render() {
     return (
       <div>

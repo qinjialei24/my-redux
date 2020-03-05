@@ -1,8 +1,9 @@
 ---
 presentation:
 
- theme: serif.css
+ theme: black.css
  progress: true
+ height: 1000
 
 ---
 
@@ -10,6 +11,73 @@ presentation:
 <!-- slide -->
 # 从0实现 Redux 
 <!-- slide -->
+## Redux 的核心概念
+- 发布订阅模式
+- `(state,action) => newState`
+<!-- slide -->
+## 发布订阅模式
+```js
+import React from "react";
+import store from "../store/index";
+
+class Count extends React.Component {
+  constructor() {
+    super()
+    this.state = store.getState().count
+    store.subscribe(() => {//订阅
+      this.setState(store.getState().count)
+    })
+  }
+  add = () => { store.dispatch({ type: 'add' }) }//发布
+  minus = () => { store.dispatch({ type: 'minus' }) }
+  render() {
+    return (
+      <div>
+        <h1>当前count的值是：</h1>
+        <h2>{this.state.count}</h2>
+        <button onClick={this.add}>+</button>
+        <button onClick={this.minus}>-</button>
+      </div>
+    )
+  }
+}
+export default Count
+```
+<!-- slide -->
+### `(state,action) => newState`
+```js
+const initialState = {
+  count: 0
+}
+
+function countReducer(state = initialState, action) {
+  switch (action.type) {
+    case 'add':
+      return {
+        ...state,
+        count: state.count + 1
+      }
+
+    case 'minus':
+      return {
+        ...state,
+        count: state.count - 1
+      }
+
+    default:
+      return state
+  }
+}
+
+export default countReducer
+
+```
+
+
+
+
+<!-- slide -->
+
 
 1. 从0实现 Redux 
 2. Redux 的问题
