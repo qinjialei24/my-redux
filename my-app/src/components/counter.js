@@ -11,6 +11,7 @@ export function Counter() {
 
   const add = () => {
     store.dispatch('counter/add')
+    // store.dispatch(store.counter.add)
   }
 
   const minusCount = () => {
