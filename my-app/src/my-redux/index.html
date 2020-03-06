@@ -11,15 +11,49 @@
 
 </body>
 <script type="module">
-  import { createStore } from "./index.js";
+  // 1点42
+
+  // 1.实现 createStore
+  // 2.实现 combineReducers，拆分 reducer
+  // 3.实现 state 拆分
+  // 4. 实现 中间件
+
+  import { createStore, combineReducers, applyMiddleware } from "./index.js";
   import { userReducer } from "./userReducer.js";
+  import { adminReducer } from "./adminReducer.js";
 
-  const rootState = {
-    user: { name: '' },
-    admin: { name: '' },
-  }
+  import { logMiddleware } from "./middlewares/logMiddleware.js";
+  import { timeMiddleware } from "./middlewares/timeMiddleware.js";
 
-  const store = createStore(userReducer, rootState)
+
+  const allReducer = combineReducers({
+    user: userReducer,
+    admin: adminReducer,
+  })
+
+  const store = createStore(allReducer, {}, applyMiddleware(logMiddleware, timeMiddleware))
+
+
+  // 返回重写之后的 createStore 方法
+  // const newCreateStore = applyMiddleware(logMiddleware, timeMiddleware)(createStore)
+
+  // const store = newCreateStore(allReducer, {})
+  // const store = createStore(allReducer, {})
+
+  // store.dispatch = timeMiddleware(logMiddleware(store)(store.dispatch))
+
+  store.subscribe(() => {
+    const state = store.getState()
+  })
+
+  store.dispatch({
+    type: 'setUserName',
+    payload: '小明'
+  })
+
+
+
+
 
 
 

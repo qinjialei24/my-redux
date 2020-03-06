@@ -2,10 +2,9 @@ const initialState = {
   name: ''
 }
 
-
-export function userReducer(state = initialState, action) {
+export function adminReducer(state = initialState, action) {
   switch (action.type) {
-    case 'setUserName':
+    case 'setAdminName':
       return {
         ...state,
         name: action.payload
