@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware } from '../my-redux';
 import count from "./reducers/count";
 import todo from "./reducers/todo";
 

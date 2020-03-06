@@ -16,6 +16,10 @@ export function createStore(reducer, initialState, enhancer) {
 
   const getState = () => state
 
+  dispatch({
+    type: Symbol()
+  })
+
   return {
     subscribe,
     dispatch,
