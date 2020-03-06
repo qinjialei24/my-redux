@@ -110,13 +110,7 @@ changeCount(2)
 > 比如当一个对象层次较深时
 ```js
 const initialState = {
-  a: {
-    b: {
-      c: {
-        count: 0
-      }
-    }
-  }
+  a: { b: {  c: { count: 0 } } }
 }
 
 function countReducer(state = initialState, action) {
@@ -135,10 +129,6 @@ function countReducer(state = initialState, action) {
           }
         }
       }
-    default:
-      return state
-  }
-}
 ```
 <!-- slide -->
 # 太难了
@@ -165,7 +155,7 @@ const newState = product(initialState, nextData => {
 
 
 <!-- slide -->
-   1. 全局单一 store 的理念导致产生了一颗巨大的状态树，状态树的任意节点更新，将导致所有组件触发更新，即使该组件不依赖该状态
+- 全局单一 store 的理念导致产生了一颗巨大的状态树，状态树的任意节点更新，将导致所有组件触发更新，即使该组件不依赖该状态
 
 ```js
 const state ={
