@@ -105,26 +105,6 @@ changeCount(2)
 ```
 <!-- slide -->
 # Redux 的问题
-
-<!-- slide -->
-# Redux 的问题
-   1. 全局单一 store 的理念导致产生了一颗巨大的状态树，状态树的任意节点更新，将导致所有组件触发更新，即使该组件不依赖该状态
-
-```js
-const state ={
-  a:{
-    count:0,
-    b:{
-      c:{
-        count:1
-      }
-    }
-  }
-}
-```
-
-- `组件A依赖state.a.b.c`
-- `组件B修改了state.a`
 <!-- slide -->
 ## immutable 写起来太繁琐
 > 比如当一个对象层次较深时
@@ -184,5 +164,26 @@ const newState = product(initialState, nextData => {
 ```
 
 
-   1. 模板代码太多，比如需要定义各种烦人的 action
-   2. action 与 reducer 是一一对应的，但是官方却推荐将两者独立成两个文件，导致维护成本上升
+<!-- slide -->
+   1. 全局单一 store 的理念导致产生了一颗巨大的状态树，状态树的任意节点更新，将导致所有组件触发更新，即使该组件不依赖该状态
+
+```js
+const state ={
+  a:{
+    count:0,
+    b:{
+      c:{
+        count:1
+      }
+    }
+  }
+}
+```
+
+- `组件A依赖state.a.b.c`
+- `组件B修改了state.a`
+- `解决方式：immer + shouldComponentUpdate`
+
+<!-- slide -->
+- ## 模板代码太多，比如需要定义各种烦人的 action
+- ## action 和 reducer 分离，导致需要频繁切换文件，开发体验差
