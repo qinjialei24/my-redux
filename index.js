@@ -1,19 +1,22 @@
-const Component1 = props => ({ tag: 'div', attrs: {}, children: [props] })
-
 let state = {
   count: 1
+};
+
+let listeners = [];
+
+function subscribe(listener) {
+   listeners.push(listener);
 }
 
-let dependences = [
-  Component1
-]
-
-function changeState(data) {
-  state.count = data
-  dependences.forEach(deps => {
-    const vNode = deps(state.count)
-    console.log("TCL: changeState -> vNode", vNode)
+function changeCount(count) {
+  state.count = count;
+  listeners.forEach(listen=>{
+    listen()
   })
 }
 
-changeState(2)
+subscribe(()=>{ 
+  console.log('state.count 的值是：',state.count);
+ })
+
+changeCount(2)
