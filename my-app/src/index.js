@@ -15,6 +15,7 @@ function App() {
 
   return (
     <div>
+      <h1>使用 immer 简化 reducer 编写</h1>
       <Todo></Todo>
       <hr />
       <Counter></Counter>
