@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script type="module">
+  import { createStore, combineReducers, applyMiddleware } from "./index.js";
+  import { todoReducer } from "./reducers/todoReducer.js";
+  import { countReducer } from "./reducers/countReducer.js";
+  import { log } from "./middlewares/log.js";
+  import { time } from "./middlewares/time.js";
+
+  const appState = {}
+
+  const allReducer = combineReducers({
+    todo: todoReducer,
+    count: countReducer,
+  })
+
+
+
+  // const newCreateStore = applyMiddleware(log, time)(createStore)
+
+  // const store = newCreateStore(allReducer, {})
+
+  const store = createStore(allReducer, {}, applyMiddleware(log, time))
+
+
+  // const logMiddleware = log(store)
+  // const timeMiddleware = time(store)
+
+  // store.dispatch = timeMiddleware(logMiddleware(store.dispatch))
+
+
+  // store.dispatch = time(store)(log(store)(store.dispatch))
+
+
+  // const _dispatch = store.dispatch
+
+  // store.dispatch = action => {
+  //   console.log(action, 'action');
+  //   _dispatch(action)
+  // }
+
+  // const _dispatch2 = store.dispatch
+
+  // store.dispatch = action => {
+  //   _dispatch2(action)
+  // }
+
+
+
+
+
+
+  store.subscribe(() => {
+    const state = store.getState()
+    console.log("state", state)
+  })
+
+  store.dispatch({
+    type: 'addTodo',
+    payload: '测试'
+  })
+
+  store.dispatch({
+    type: 'addTodo',
+    payload: '测试2'
+  })
+
+  store.dispatch({
+    type: 'addCount',
+  })
+
+
+</script>
+
+</html>
