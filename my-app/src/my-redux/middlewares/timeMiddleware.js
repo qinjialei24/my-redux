@@ -1,6 +1,4 @@
-export const timeMiddleware = store => dispatch => {
-  return action => {
-    console.log(new Date().getTime());
-    dispatch(action)
-  }
+export const timeMiddleware = store => dispatch => action => {
+  console.log(new Date().getTime());
+  dispatch(action)
 }

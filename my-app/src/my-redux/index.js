@@ -3,6 +3,7 @@ export function createStore(reducer, initialState, enhancer) {
     const newCreateStore = enhancer(createStore)
     return newCreateStore(reducer, initialState)
   }
+
   let state = initialState
   let listeners = [];
   function subscribe(listener) {
@@ -25,8 +26,6 @@ export function createStore(reducer, initialState, enhancer) {
     dispatch,
     getState
   }
-
-
 
 }
 
